@@ -41,7 +41,7 @@ SELECT
        distinct Name 
 FROM
             [Master].sys.databases
- where create_date >= cast(getdate()-2 as date)
+ where create_date >= cast(getdate() -1  as date)
  and name not in (
 ''master''
 ,''model''
@@ -165,7 +165,8 @@ EXEC master.dbo.sys_sp_send_dbmail
 	 
 ', 
 		@database_name=N'master', 
-		@flags=0
+		@output_file_name=N'W:\Work\Process\Daily\Logs\1APS_DB Role Assigment_OnelookWebTeam.txt', 
+		@flags=22
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback

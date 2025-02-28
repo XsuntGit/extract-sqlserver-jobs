@@ -141,7 +141,7 @@ EXEC master.dbo.sys_sp_send_dbmail
 	 
 ', 
 		@database_name=N'master', 
-		@flags=0
+		@flags=20
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
