@@ -24,20 +24,6 @@ IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'exec Loading StoredProc', 
 		@step_id=1, 
 		@cmdexec_success_code=0, 
-		@on_success_action=3, 
-		@on_success_step_id=0, 
-		@on_fail_action=3, 
-		@on_fail_step_id=0, 
-		@retry_attempts=0, 
-		@retry_interval=0, 
-		@os_run_priority=0, @subsystem=N'TSQL', 
-		@command=N'exec [dbo].[sp_DCV_PatientHub_RawData_cnfg]', 
-		@database_name=N'BMSRData_CSCAN', 
-		@flags=0
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'zeposia raw pat hub load', 
-		@step_id=2, 
-		@cmdexec_success_code=0, 
 		@on_success_action=1, 
 		@on_success_step_id=0, 
 		@on_fail_action=2, 
@@ -45,7 +31,7 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'zeposia 
 		@retry_attempts=0, 
 		@retry_interval=0, 
 		@os_run_priority=0, @subsystem=N'TSQL', 
-		@command=N'exec [BMSRData_CSCAN]. [dbo]. [sp_Zeposia_PatientHub_RawData_cnfg]  ', 
+		@command=N'exec [dbo].[sp_DCV_PatientHub_RawData_cnfg]', 
 		@database_name=N'BMSRData_CSCAN', 
 		@flags=0
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
