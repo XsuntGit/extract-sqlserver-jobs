@@ -91,10 +91,10 @@ from sys.databases
 			order by 1 desc
 			)) or    name like ''%karxt%config%'' )
  
-  if OBJECT_ID (N''TempdB..##Listfiles2'') is not null drop table TempdB..##Listfiles2
-  if OBJECT_ID (N''TempdB..##Listfiles3'') is not null drop table TempdB..##Listfiles3
-  Create Table TempdB..##Listfiles2 ( Fil varchar(8000), depth int,fildep int) 
- 	insert into TempdB..##Listfiles2 (Fil , depth, fildep)
+  if OBJECT_ID (N''TempdB..##Listfiles22'') is not null drop table TempdB..##Listfiles22
+  if OBJECT_ID (N''TempdB..##Listfiles33'') is not null drop table TempdB..##Listfiles33
+  Create Table TempdB..##Listfiles22 ( Fil varchar(8000), depth int,fildep int) 
+ 	insert into TempdB..##Listfiles22 (Fil , depth, fildep)
 	    EXEC master..xp_dirtree
 		''\\172.25.99.17\pa-bms-bck\DR-ONELOOK-DB''
         , 0
@@ -103,7 +103,7 @@ from sys.databases
 		set @qry=''Select SUBSTRING(fil,1,CHARINDEX(''''backup'''',fil)-2) as DB
 		,''''\\172.25.99.17\pa-bms-bck\DR-ONELOOK-DB\''''+
 		SUBSTRING(fil,1,CHARINDEX(''''backup'''',fil)-2)+''''\''''+
-		fil as FileName into TempdB..##Listfiles3 from TempdB..##Listfiles2
+		fil as FileName into TempdB..##Listfiles33 from TempdB..##Listfiles22
 		where ''+@var
 		print @qry
 		exec(@qry)
@@ -118,7 +118,7 @@ EXEC [master].[dbo].[spQueryToHtmlTable]  @html = @html OUTPUT,  @query = N''
 		  
 					order by 1 desc
 					) or    name like ''''%karxt%config%'''' ) t1
-		left join TempdB..##Listfiles3 t2 on t1.name=t2.db
+		left join TempdB..##Listfiles33 t2 on t1.name=t2.db
 
 '' ,@orderBy = N''ORDER BY 1'';
 print @html
