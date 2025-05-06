@@ -47,6 +47,7 @@ FROM
 ,''model''
 ,''msdb''
 ,''tempdb''
+ 
 )
 and not  (name like ''%BMSONC%''
 or name like ''%onelook%''
@@ -56,6 +57,8 @@ or name like ''%account%''
 and name not  like ''%BMS%CHIN%''
 and name not like ''%XsuntAdmin%''
 and name not like ''%BMSHEME%''
+order by name 
+
 OPEN Db_cursor
 FETCH NEXT
 FROM
@@ -113,7 +116,7 @@ print @dbname
  
  
 			''
-		 	print @V_SQL 
+		  print @V_SQL 
 			EXEC  master.dbo.sp_executesql @V_SQL
  FETCH NEXT
 FROM
