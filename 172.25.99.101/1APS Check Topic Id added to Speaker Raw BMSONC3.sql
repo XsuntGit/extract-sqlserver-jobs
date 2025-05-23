@@ -51,7 +51,8 @@ from (
 select distinct Speaker_Topic_ID , SPEAKER_PRODUCT_NAME, 
 case
        when SPEAKER_PRODUCT_NAME = ''NON-BRANDED ACTIVITY'' then ''UNBRAND'' 
-       when SPEAKER_PRODUCT_NAME = ''OPDIVO HCC'' then ''HCC'' 
+       when SPEAKER_PRODUCT_NAME = ''OPDIVO+YERVOY HCC'' then ''HCC'' 
+	   when SPEAKER_PRODUCT_NAME = ''OPDIVO+YERVOY CRC'' then ''CRC'' 
 	   WHEN SPEAKER_PRODUCT_NAME  =''AUGTYRO LUNG'' THEN  ''AUGTYRO''
        when SPEAKER_PRODUCT_NAME = ''SPRYCEL'' then ''SPR''
 	   when SPEAKER_PRODUCT_NAME = ''KRAZATI LUNG'' then ''KRS''
@@ -67,6 +68,7 @@ case
        when SPEAKER_PRODUCT_NAME = ''OPDIVO RCC'' then ''RCC''
 	   when SPEAKER_PRODUCT_NAME = ''OPDIVO QVANTIG'' then ''SBQ''
 	   when SPEAKER_PRODUCT_NAME = ''OPDIVO+YERVOY HCC'' then ''O+Y HCC''
+	   when SPEAKER_PRODUCT_NAME = ''OPDIVO+YERVOY CRC'' then ''O+Y CRC'' 
 	   when SPEAKER_PRODUCT_NAME = ''OPDIVO+YERVOY LUNG'' then ''O+Y NSC''
 	   when SPEAKER_PRODUCT_NAME = ''OPDIVO MET GASTROESOPHAGEAL'' then ''UGI Met''
 	   when SPEAKER_PRODUCT_NAME = ''OPDIVO ADJ GASTROESOPHAGEAL'' then ''UGI Adj''
@@ -74,7 +76,9 @@ case
        when SPEAKER_PRODUCT_NAME = ''OPDIVO'' then case 
 	   
 	   when t3.SRC_PRD_Desc = ''NON-BRANDED ACTIVITY'' then ''UNBRAND'' 
-       when t3.SRC_PRD_Desc = ''OPDIVO HCC'' then ''HCC'' 
+       when t3.SRC_PRD_Desc = ''OPDIVO+YERVOY HCC'' then ''HCC'' 
+	   
+	   when t3.SRC_PRD_Desc = ''OPDIVO+YERVOY CRC'' then ''CRC'' 
        when t3.SRC_PRD_Desc = ''SPRYCEL'' then ''SPR''
 	   when t3.SRC_PRD_Desc = ''KRAZATI LUNG'' then ''KRS''
        when t3.SRC_PRD_Desc = ''OPDIVO ADJ MEL'' then ''ADJ''
@@ -88,6 +92,7 @@ case
 	   when t3.SRC_PRD_Desc =''OPDIVO QVANTIG'' then ''SBQ''
 	   when t3.SRC_PRD_Desc = ''YERVOY/OPDIVO MELANOMA'' then ''YER''
 	   when t3.SRC_PRD_Desc = ''OPDIVO+YERVOY HCC'' then ''O+Y HCC''
+	   when t3.SRC_PRD_Desc = ''OPDIVO+YERVOY CRC'' then ''O+Y CRC'' 
 	   when t3.SRC_PRD_Desc = ''OPDIVO+YERVOY LUNG'' then ''O+Y NSC''
 	   when t3.SRC_PRD_Desc = ''OPDIVO MET GASTROESOPHAGEAL'' then ''UGI Met''
 	   when t3.SRC_PRD_Desc = ''OPDIVO ADJ GASTROESOPHAGEAL'' then ''UGI Adj''
@@ -98,7 +103,9 @@ case
 end as Product, 
 case
        when SPEAKER_PRODUCT_NAME = ''NON-BRANDED ACTIVITY'' then ''UNBRAND'' 
-       when SPEAKER_PRODUCT_NAME = ''OPDIVO HCC'' then ''HCC''
+        
+	   when SPEAKER_PRODUCT_NAME = ''OPDIVO+YERVOY HCC'' then ''HCC''
+	   when SPEAKER_PRODUCT_NAME = ''OPDIVO+YERVOY CRC'' then ''CRC'' 
        when SPEAKER_PRODUCT_NAME = ''SPRYCEL'' then ''SPR''
 	   when SPEAKER_PRODUCT_NAME = ''KRAZATI LUNG'' then ''KRS''
 	   WHEN SPEAKER_PRODUCT_NAME  =''AUGTYRO LUNG'' THEN  ''ROS''
@@ -112,6 +119,8 @@ case
 	   when SPEAKER_PRODUCT_NAME = ''YERVOY ADJUVANT'' then ''YER''
 	   when SPEAKER_PRODUCT_NAME = ''YERVOY/OPDIVO MELANOMA'' then ''YER''
 	   when SPEAKER_PRODUCT_NAME = ''OPDIVO+YERVOY HCC'' then ''HCC''
+ 
+	   when SPEAKER_PRODUCT_NAME = ''OPDIVO+YERVOY CRC'' then ''CRC'' 
 	   when SPEAKER_PRODUCT_NAME = ''OPDIVO+YERVOY LUNG'' then ''NSC''
 	   when SPEAKER_PRODUCT_NAME = ''OPDIVO RCC'' then ''RCC''
 	   when SPEAKER_PRODUCT_NAME =''OPDIVO QVANTIG'' then ''SBQ''
@@ -121,7 +130,8 @@ case
        when SPEAKER_PRODUCT_NAME = ''OPDIVO'' then case 
 	   
 	   when t3.SRC_PRD_Desc = ''NON-BRANDED ACTIVITY'' then ''UNBRAND'' 
-       when t3.SRC_PRD_Desc = ''OPDIVO HCC'' then ''HCC'' 
+	   when t3.SRC_PRD_Desc = ''OPDIVO+YERVOY HCC'' then ''HCC''
+	   when t3.SRC_PRD_Desc = ''OPDIVO+YERVOY CRC'' then ''CRC'' 
        when t3.SRC_PRD_Desc = ''SPRYCEL'' then ''SPR''
 	   when t3.SRC_PRD_Desc = ''KRAZATI LUNG'' then ''KRS''
        when t3.SRC_PRD_Desc = ''OPDIVO ADJ MEL'' then ''YER''
@@ -139,6 +149,8 @@ case
 	   when t3.SRC_PRD_Desc = ''OPDIVO ADJ GASTROESOPHAGEAL'' then ''UGA''
 	   when t3.SRC_PRD_Desc = ''OPDIVO BLADDER'' then ''BLA''
 	   when t3.SRC_PRD_Desc = ''OPDIVO+YERVOY HCC'' then ''HCC''
+	 
+	   when t3.SRC_PRD_Desc = ''OPDIVO+YERVOY CRC'' then ''CRC'' 
 	   when t3.SRC_PRD_Desc = ''OPDIVO+YERVOY LUNG'' then ''NSC''
 	   else 
 	   ''BRAND'' end
