@@ -43,12 +43,12 @@ from (
 			where create_date > (Select top 1 format(dt ,''yyyy-MM-dd 00:00:00.000'') 
 			from  BMSONC_867..dimdate where WeekDayName=''Friday''
 			and dt <= cast(getdate() as date)
-			and name like ''%karxt%''
+			and name like ''%karxt%'' and name not like ''%max%''
 			order by 1 desc
 			)
 			union
 			Select distinct name,create_date from sys.databases
-			where name like ''%karxt%''
+			where name like ''%karxt%'' and name not like ''%max%''
 			
 			) t1
 					
@@ -87,7 +87,7 @@ from sys.databases
 			
 			((create_date > (Select top 1 format(dt ,''yyyy-MM-dd 00:00:00.000'') 
 			from  BMSONC_867..dimdate where WeekDayName=''Friday''
-			and dt <= cast(getdate() as date) and name like ''%karxt%''
+			and dt <= cast(getdate() as date) and name like ''%karxt%'' and name not like ''%max%''
 			order by 1 desc
 			)) or    name like ''%karxt%config%'' )
  
@@ -114,7 +114,7 @@ EXEC [master].[dbo].[spQueryToHtmlTable]  @html = @html OUTPUT,  @query = N''
 				from (
 					Select distinct name,create_date from sys.databases
 					where create_date > (Select top 1 format(dt ,''''yyyy-MM-dd 00:00:00.000'''') from  Bmsonc_867..dimdate where WeekDayName=''''Friday''''
-					and dt <= cast(getdate() as date)   and name like ''''%karxt%''''
+					and dt <= cast(getdate() as date)   and name like ''''%karxt%'''' and name not like ''''%max%''''
 		  
 					order by 1 desc
 					) or    name like ''''%karxt%config%'''' ) t1
