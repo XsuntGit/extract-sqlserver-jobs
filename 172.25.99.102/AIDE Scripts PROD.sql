@@ -10,7 +10,7 @@ END
 
 DECLARE @jobId BINARY(16)
 EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'AIDE_Scripts_PROD', 
-		@enabled=1, 
+		@enabled=0, 
 		@notify_level_eventlog=0, 
 		@notify_level_email=0, 
 		@notify_level_netsend=0, 
@@ -39,7 +39,7 @@ IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'Run_AIDE_Scripts_PROD', 
 		@enabled=1, 
 		@freq_type=8, 
-		@freq_interval=15, 
+		@freq_interval=14, 
 		@freq_subday_type=8, 
 		@freq_subday_interval=1, 
 		@freq_relative_interval=0, 
