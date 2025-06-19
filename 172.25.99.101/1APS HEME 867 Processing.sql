@@ -40,7 +40,12 @@ set @str1 = cast(FORMAT(GETDATE() , ''yyyyMMdd_HHmmss'') as varchar)
 	set @Sql = ''SQLCMD -S ONELOOK-DB-1 -i "W:\work\scripts\BMS\OneLook\HEME3.0\Production\867_Heme\867_Processing_Heme.sql" -o "W:\work\scripts\BMS\OneLook\HEME3.0\Production\867_Heme\Processing\Logs\867_Processing_Heme_''+@str1+''.txt"''
 	EXEC master.sys.xp_cmdshell @Sql
 
-', 
+
+		set @Sql = ''SQLCMD -S ONELOOK-DB-1 -i "W:\work\scripts\BMS\OneLook\HEME3.0\Production\867_Heme\HEM 867 TRx Summary.sql" -o "W:\work\scripts\BMS\OneLook\HEME3.0\Production\867_Heme\Processing\Logs\HEM 867 TRx Summary_''+@str1+''.txt"''
+	EXEC master.sys.xp_cmdshell @Sql
+
+
+	', 
 		@database_name=N'master', 
 		@flags=0
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
