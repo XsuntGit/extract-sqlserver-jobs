@@ -155,7 +155,7 @@ set @body1 = case when @html is null then ''NO Databases asssigned OneLookWebtea
 
 EXEC master.dbo.sys_sp_send_dbmail
     @profile_name = ''XSUNT ONELOOK-SQL NOTIFICATION'',
-    @recipients = ''prateek.singh@xsunt.com;alen.zhang@xsunt.com;akorolev@xsunt.com;Yiran.Yan@xsunt.com;ryan.gloria@xsunt.com'',
+    @recipients = ''prateek.singh@xsunt.com;alen.zhang@xsunt.com;akorolev@xsunt.com;Yiran.Yan@xsunt.com;ryan.gloria@xsunt.com;peter.huang@xsunt.com'',
     ----@from_address = ''prateek.singh@xsunt.com'',
     @subject = ''List of Databases OneLookWebTeam DB Role Assigned on PA102 for CV , IMM , VAP ,ZEP'',
     @body = @body1 ,
