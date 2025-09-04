@@ -9,18 +9,18 @@ IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 END
 
 DECLARE @jobId BINARY(16)
-EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'Daily MSL Call Activity - CSCAN', 
-		@enabled=0, 
+EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'Daily MSL Call Activity', 
+		@enabled=1, 
 		@notify_level_eventlog=0, 
 		@notify_level_email=0, 
 		@notify_level_netsend=0, 
 		@notify_level_page=0, 
 		@delete_level=0, 
-		@description=N'No description available.', 
+		@description=N'Daily MSL Call Activity - CSCAN', 
 		@category_name=N'[Uncategorized (Local)]', 
-		@owner_login_name=N'XSUNT\srv-task', @job_id = @jobId OUTPUT
+		@owner_login_name=N'XSUNT\yancheng.zhou', @job_id = @jobId OUTPUT
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'daily msl call', 
+EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Daily MSL Call Activity - CSCAN', 
 		@step_id=1, 
 		@cmdexec_success_code=0, 
 		@on_success_action=1, 
@@ -36,19 +36,19 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'daily ms
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'daily msl call', 
+EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'sp_DailyCallActivityCSCAN_MSL', 
 		@enabled=1, 
 		@freq_type=8, 
-		@freq_interval=120, 
+		@freq_interval=57, 
 		@freq_subday_type=1, 
 		@freq_subday_interval=0, 
 		@freq_relative_interval=0, 
 		@freq_recurrence_factor=1, 
-		@active_start_date=20200829, 
+		@active_start_date=20250903, 
 		@active_end_date=99991231, 
-		@active_start_time=103000, 
+		@active_start_time=134000, 
 		@active_end_time=235959, 
-		@schedule_uid=N'e63ace09-537b-43ee-b4ae-ec8b1d93ae56'
+		@schedule_uid=N'fafadc55-ecae-4575-8d27-88c819e6af41'
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N'(local)'
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
