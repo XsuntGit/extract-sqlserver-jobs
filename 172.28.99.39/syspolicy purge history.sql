@@ -30,7 +30,8 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Verify t
 		@retry_attempts=0, 
 		@retry_interval=0, 
 		@os_run_priority=0, @subsystem=N'TSQL', 
-		@command=N'IF (msdb.dbo.fn_syspolicy_is_automation_enabled() != 1)
+		@command=N'EXECUTE AS LOGIN = ''##MS_PolicyTsqlExecutionLogin##'' WITH NO REVERT;
+        IF (msdb.dbo.fn_syspolicy_is_automation_enabled() != 1)
         BEGIN
             RAISERROR(34022, 16, 1)
         END', 
@@ -47,7 +48,8 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Purge hi
 		@retry_attempts=0, 
 		@retry_interval=0, 
 		@os_run_priority=0, @subsystem=N'TSQL', 
-		@command=N'EXEC msdb.dbo.sp_syspolicy_purge_history', 
+		@command=N'EXECUTE AS LOGIN = ''##MS_PolicyTsqlExecutionLogin##'' WITH NO REVERT;
+        EXEC msdb.dbo.sp_syspolicy_purge_history', 
 		@database_name=N'master', 
 		@flags=0
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
