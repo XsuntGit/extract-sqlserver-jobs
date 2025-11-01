@@ -72,7 +72,7 @@ EXEC [Master].Dbo.sys_sp_send_dbmail
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'run every sunday evening 7 pm', 
+EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'run every Monday 6 PM', 
 		@enabled=1, 
 		@freq_type=8, 
 		@freq_interval=2, 
@@ -82,7 +82,7 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'run every
 		@freq_recurrence_factor=1, 
 		@active_start_date=20240906, 
 		@active_end_date=99991231, 
-		@active_start_time=60000, 
+		@active_start_time=180000, 
 		@active_end_time=235959, 
 		@schedule_uid=N'dbd4352f-3a84-4b1f-9631-afd451781ebb'
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback

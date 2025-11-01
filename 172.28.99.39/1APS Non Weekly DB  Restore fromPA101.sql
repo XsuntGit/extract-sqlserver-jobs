@@ -107,14 +107,14 @@ IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'copy files form pa 101', 
 		@enabled=1, 
 		@freq_type=8, 
-		@freq_interval=1, 
+		@freq_interval=2, 
 		@freq_subday_type=1, 
 		@freq_subday_interval=0, 
 		@freq_relative_interval=0, 
 		@freq_recurrence_factor=1, 
 		@active_start_date=20230615, 
 		@active_end_date=99991231, 
-		@active_start_time=125900, 
+		@active_start_time=215900, 
 		@active_end_time=235959, 
 		@schedule_uid=N'3668920b-4051-42d5-810c-acf009501f05'
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
