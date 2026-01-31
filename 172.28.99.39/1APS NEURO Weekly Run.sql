@@ -10,7 +10,7 @@ END
 
 DECLARE @jobId BINARY(16)
 EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'1APS_NEURO_Weekly_Run', 
-		@enabled=1, 
+		@enabled=0, 
 		@notify_level_eventlog=0, 
 		@notify_level_email=2, 
 		@notify_level_netsend=0, 
@@ -46,14 +46,14 @@ IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'RUN WEEKLY SCHEDULE NEURO', 
 		@enabled=1, 
 		@freq_type=8, 
-		@freq_interval=64, 
+		@freq_interval=1, 
 		@freq_subday_type=1, 
 		@freq_subday_interval=0, 
 		@freq_relative_interval=0, 
 		@freq_recurrence_factor=1, 
 		@active_start_date=20240712, 
 		@active_end_date=99991231, 
-		@active_start_time=123000, 
+		@active_start_time=40000, 
 		@active_end_time=235959, 
 		@schedule_uid=N'66a4c69c-f919-4845-b84e-8480947f0a69'
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
