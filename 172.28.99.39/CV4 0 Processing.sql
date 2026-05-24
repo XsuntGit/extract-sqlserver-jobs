@@ -34,7 +34,7 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'CV 4.0 P
 Declare @str1 varchar(1000)
 set @str1 = cast(FORMAT(GETDATE() , ''yyyyMMdd_HHmmss'') as varchar)
 
-	set @Sql = ''SQLCMD -S OneLook-DB-DR-1 -i "\\172.28.99.39\nj-w-39\work\scripts\BMS\OneLook\CV\CV 4.0 Processing.sql" -o "\\172.28.99.39\nj-w-39\work\scripts\BMS\OneLook\CV\CV4_Processing_Log_''+@str1+''.txt"''
+	set @Sql = ''SQLCMD -S OneLook-DB-DR-1 -i "\\172.28.99.39\nj-w-39\work\scripts\BMS\OneLook\CV\CV4_Processing.sql" -o "\\172.28.99.39\nj-w-39\work\scripts\BMS\OneLook\CV\CV4_Processing_Log_''+@str1+''.txt"''
 	EXEC master.sys.xp_cmdshell @Sql
 ', 
 		@database_name=N'master', 
@@ -45,14 +45,14 @@ IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'cv 4.0 Processing', 
 		@enabled=1, 
 		@freq_type=8, 
-		@freq_interval=32, 
+		@freq_interval=64, 
 		@freq_subday_type=1, 
 		@freq_subday_interval=0, 
 		@freq_relative_interval=0, 
 		@freq_recurrence_factor=1, 
-		@active_start_date=20260522, 
+		@active_start_date=20260523, 
 		@active_end_date=99991231, 
-		@active_start_time=173400, 
+		@active_start_time=124600, 
 		@active_end_time=235959, 
 		@schedule_uid=N'b20c9982-6c73-4fc6-a10a-a3b7521c8284'
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
