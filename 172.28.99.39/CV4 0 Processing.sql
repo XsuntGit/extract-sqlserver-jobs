@@ -45,14 +45,14 @@ IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'cv 4.0 Processing', 
 		@enabled=1, 
 		@freq_type=8, 
-		@freq_interval=64, 
+		@freq_interval=1, 
 		@freq_subday_type=1, 
 		@freq_subday_interval=0, 
 		@freq_relative_interval=0, 
 		@freq_recurrence_factor=1, 
-		@active_start_date=20260523, 
+		@active_start_date=20260529, 
 		@active_end_date=99991231, 
-		@active_start_time=124600, 
+		@active_start_time=40000, 
 		@active_end_time=235959, 
 		@schedule_uid=N'b20c9982-6c73-4fc6-a10a-a3b7521c8284'
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
